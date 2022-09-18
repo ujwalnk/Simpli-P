@@ -1,12 +1,17 @@
 function convert() {
     let userInput = document.getElementById("userInput").value;
     let percision = document.getElementById("precisionInput").value;
-    
+
     let sqrt = document.getElementById("sqrtInput").value;
     let minSqrt = document.getElementById("sqrtMinInput").value;
     let numeric = document.getElementById("numericInput").value;
     let minNumeric = document.getElementById("numericMinInput").value;
 
+    let negativeInput = 0;
+    if (userInput < 0) {
+        negativeInput = 1;
+        userInput *= -1;
+    }
 
     let output = document.getElementById("result");
 
@@ -20,26 +25,46 @@ function convert() {
     for (let x = minSqrt; x < sqrt; x++) {
         progress.children[0].setAttribute("aria-valuenow", (x / sqrt) * 100);
         if (checkVal == Math.trunc(Math.sqrt(x) * Math.pow(10, percision))) {
-            output.innerHTML = "$$\\sqrt{" + x + "}$$";
+            if (negativeInput == 1) {
+                output.innerHTML = "$$\\-sqrt{" + x + "}$$";
+            } else {
+                output.innerHTML = "$$\\sqrt{" + x + "}$$";
+            }
             MathJax.typeset();
             reset();
             return;
         }
         for (let y = minNumeric; y < numeric; y++) {
             if (checkVal == Math.trunc(Math.sqrt(x) * Math.pow(10, percision)) + y * Math.pow(10, percision)) {
-                output.innerHTML = "$$\\sqrt{" + x + "} +" + y + "$$";
+                if (negativeInput == 1) {
+                    output.innerHTML = "$$\\-(sqrt{" + x + "} +" + y + ")$$";
+
+                } else {
+                    output.innerHTML = "$$\\sqrt{" + x + "} +" + y + "$$";
+                }
                 MathJax.typeset();
                 reset();
                 return;
             }
             else if (checkVal == Math.trunc(Math.sqrt(x) * Math.pow(10, percision)) - y * Math.pow(10, percision)) {
-                output.innerHTML = "$$\\sqrt{" + x + "} -" + y + "$$";
+                if (negativeInput == 1) {
+                    output.innerHTML = "$$\\-(sqrt{" + x + "} -" + y + ")$$";
+
+                }
+                else {
+                    output.innerHTML = "$$\\sqrt{" + x + "} -" + y + "$$";
+                }
                 MathJax.typeset();
                 reset();
                 return;
             }
             else if (checkVal == y * Math.pow(10, percision) - Math.trunc(Math.sqrt(x) * Math.pow(10, percision)) + 1 || checkVal == y * Math.pow(10, percision) - Math.trunc(Math.sqrt(x) * Math.pow(10, percision)) - 1) {
-                output.innerHTML = "$$" + y + "-\\sqrt{" + x + "}$$";
+                if (negativeInput == 1) {
+                    output.innerHTML = "$$-(" + y + "-\\sqrt{" + x + "})$$";
+                }
+                else {
+                    output.innerHTML = "$$" + y + "-\\sqrt{" + x + "}$$";
+                }
                 MathJax.typeset();
                 reset();
                 return;
@@ -52,7 +77,7 @@ function convert() {
     MathJax.typeset();
 }
 
-function reset(){
+function reset() {
     document.getElementById("userInteractionButton").style.display = "block";
     document.getElementById("userInteractionProgress").style.display = "none";
 }
