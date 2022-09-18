@@ -28,3 +28,8 @@ body::before{
     background-repeat: no-repeat;
     opacity: 0.065;
 }
+
+button{
+    cursor: pointer;
+    z-index: 10x;
+}
