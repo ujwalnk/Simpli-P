@@ -31,5 +31,5 @@ body::before{
 
 button{
     cursor: pointer;
-    z-index: 10x;
+    z-index: 10;
 }
