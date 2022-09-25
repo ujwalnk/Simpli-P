@@ -26,7 +26,7 @@ function convert() {
         progress.children[0].setAttribute("aria-valuenow", (x / sqrt) * 100);
         if (checkVal == Math.trunc(Math.sqrt(x) * Math.pow(10, percision))) {
             if (negativeInput == 1) {
-                output.innerHTML = "$$\\-sqrt{" + x + "}$$";
+                output.innerHTML = "$$-\\sqrt{" + x + "}$$";
             } else {
                 output.innerHTML = "$$\\sqrt{" + x + "}$$";
             }
@@ -37,7 +37,7 @@ function convert() {
         for (let y = minNumeric; y < numeric; y++) {
             if (checkVal == Math.trunc(Math.sqrt(x) * Math.pow(10, percision)) + y * Math.pow(10, percision)) {
                 if (negativeInput == 1) {
-                    output.innerHTML = "$$\\-(sqrt{" + x + "} +" + y + ")$$";
+                    output.innerHTML = "$$-\\(sqrt{" + x + "} +" + y + ")$$";
 
                 } else {
                     output.innerHTML = "$$\\sqrt{" + x + "} +" + y + "$$";
