@@ -30,7 +30,7 @@
     <title>Simpli Irrational</title>
 </head>
 
-<body>
+<body onload="help()">
     <div class="container-lg">
         <h1 class="display-1 text-center"> $$Simpli(P)$$</h1>
     </div>
@@ -38,15 +38,11 @@
 
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon3">$$a$$</span>
-            <input type="number" class="form-control" id="userInput" aria-describedby="basic-addon3">
+            <input type="number" class="form-control" id="userInput" aria-describedby="basic-addon3" onkeyup='setMaxPrecision(this)'>
         </div>
-
-        <div class="input-group mb-3">
-            <span class="input-group-text">$$y \in [$$</span>
-            <input class="form-control" value="0" id="sqrtMinInput">
-            <span class="input-group-text">$$,$$</span>
-            <input class="form-control" type="number" min="1" id="sqrtInput">
-            <span class="input-group-text">$$)$$</span>
+        <div class="accordion-body">
+            <strong>Irrational Form</strong> <br />Enter the decimal irrational form, greater the decimal count, more
+            accurate the output result will be. Let's take an example.
         </div>
 
         <div class="input-group mb-3">
@@ -58,9 +54,28 @@
         </div>
 
         <div class="input-group mb-3">
+            <span class="input-group-text">$$y \in [$$</span>
+            <input class="form-control" value="0" id="sqrtMinInput">
+            <span class="input-group-text">$$,$$</span>
+            <input class="form-control" type="number" min="1" id="sqrtInput">
+            <span class="input-group-text">$$)$$</span>
+        </div>
+
+        <div class="accordion-body">
+            <strong>Range</strong> <br /> The range specifies the value within which the x and y values lie within.
+            The
+            lower limit is an inclusive, while the upper limit is exclusive.
+        </div>
+
+        <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon3">Precision</span>
             <input class="form-control" type="number" id="precisionInput" aria-describedby="basic-addon3">
         </div>
+        <div class="accordion-body">
+            <strong>Decimals to Consider</strong> <br /> Number of decimal places to consider for processing. Must be
+            less than the number of decimal places present in the input value.
+        </div>
+
 
         <div class="progress" style="display: none;" id="userInteractionProgress">
             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75"
@@ -75,7 +90,7 @@
     <div class="container-md" id="result">$$a = \pm x \pm \sqrt{y}$$</div>
 
 
-    <div class="container-md text-center position-absolute bottom-0 start-50 translate-middle-x">
+    <div class="container-md text-center position-static">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-code-slash"
             viewBox="0 0 16 16">
             <path
